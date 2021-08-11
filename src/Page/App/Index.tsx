@@ -23,7 +23,7 @@ export default class App extends CommonVueComponent<Props, State>
      * @type Object
      */
     public static defaultProps: Props = {
-        title: 'Hey there!',
+        title: 'This is a default property.',
     };
 
     /**
