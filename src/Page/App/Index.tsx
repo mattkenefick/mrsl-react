@@ -27,16 +27,46 @@ export default class App extends CommonVueComponent<Props, State>
     };
 
     /**
+     * Bind functions to self
+     *
+     * @type string[]
+     */
+    protected bindings: string[] = [
+        'Handle_OnInterval',
+    ];
+
+    /**
+     * Reference for our interval
+     *
+     * @type number
+     */
+    private interval: number = 0;
+
+    /**
+     * Reference for our interval
+     *
+     * @type number
+     */
+    private intervalDuration: number = 250;
+
+    /**
      * @return void
      */
     public mounted(): void {
         super.mounted();
 
-        setInterval(() => {
-            this.setState({
-                counter: Date.now()
-            });
-        }, 1000);
+        // Start interval
+        this.start();
+    }
+
+    /**
+     * @return void
+     */
+    public beforeDestroy(): void {
+        super.beforeDestroy();
+
+        // Stop interval
+        this.stop();
     }
 
     /**
@@ -45,4 +75,31 @@ export default class App extends CommonVueComponent<Props, State>
     public render() {
         return Template.call(this, this);
     }
+
+    /**
+     * @return void
+     */
+    public start(): void {
+        this.interval = window.setInterval(this.Handle_OnInterval, this.intervalDuration);
+    }
+
+    /**
+     * @return void
+     */
+    public stop(): void {
+        clearInterval(this.interval);
+        this.interval = 0;
+    }
+
+
+    // region: Event Handlers
+    // -------------------------------------------------------------------------
+
+    protected Handle_OnInterval(): void {
+        this.setState({
+            counter: Date.now()
+        });
+    }
+
+    // endregion: Event Handlers
 }

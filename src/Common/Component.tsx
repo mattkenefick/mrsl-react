@@ -34,6 +34,13 @@ export default class CommonComponent<T, TT> extends React.Component<T, TT>
     public state: TT = {} as TT;
 
     /**
+     * Automatic function bindings
+     *
+     * @type string[]
+     */
+    protected bindings: string[] = [];
+
+    /**
      * @todo   Set type of context
      *
      * @param  T props
@@ -48,6 +55,10 @@ export default class CommonComponent<T, TT> extends React.Component<T, TT>
      * @return void
      */
     public componentDidMount(): void {
+        // Bind functions
+        this.bind(...this.bindings);
+
+        // Attach events
         this.attachEvents();
     }
 
@@ -74,5 +85,15 @@ export default class CommonComponent<T, TT> extends React.Component<T, TT>
      */
     public detachEvents(): void {
         // Not implemented
+    }
+
+    /**
+     * List of functions to bind to class
+     * @param string[] functionName
+     * @return void
+     */
+    public bind(...functionName: string[]): void {
+        // @ts-ignore
+        functionName.forEach((name: string) => this[name] = this[name].bind(this));
     }
 }
