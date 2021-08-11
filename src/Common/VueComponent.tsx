@@ -12,6 +12,9 @@ import CommonComponent from './Component';
   │                                                                            │
   │ Since we're butchering the web here anyway, we might as well go all-in 🤷🏻‍♂️  │
   │                                                                            │
+  │ More realistically, you'd extend the Component.tsx file instead, but this  │
+  │ is experimental for an alternate syntax.                                   │
+  │                                                                            │
   │ @author Matt Kenefick <medium.com/@mattkenefick>                           │
   │ @package MRSL                                                              │
   │ @see https://v3.vuejs.org/api/options-lifecycle-hooks.html                 │

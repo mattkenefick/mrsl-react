@@ -6,6 +6,25 @@ import React from 'react';
   │                                                                            │
   │ Common/Component.tsx                                                       │
   │                                                                            │
+  │ This is the root level component that higher level component classes       │
+  │ should extend; like a PageBase or ViewBase.                                │
+  │                                                                            │
+  │ It (will) provides core functionality and general abstractions that        │
+  │ will be easy to manage; for instance bindings and event management.        │
+  │                                                                            │
+  │ By extending this, you have access to:                                     │
+  │                                                                            │
+  │     protected bindings: string[] = [                                       │
+  │         'Handle_OnClick',                                                  │
+  │         'Handle_OnFetchSuccess',                                           │
+  │         ...                                                                │
+  │     ];                                                                     │
+  │                                                                            │
+  │ ...which will automatically bind their scope to the class.                 │
+  │                                                                            │
+  │ It also has abstractions for `attachEvents` and `detachEvents` which is    │
+  │ good practice for ensuring you don't scatter your DOM listeners.           │
+  │                                                                            │
   │ @author Matt Kenefick <medium.com/@mattkenefick>                           │
   │ @package MRSL                                                              │
   │                                                                            │
